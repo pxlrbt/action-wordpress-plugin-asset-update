@@ -95,8 +95,8 @@ if [[ -e "$GITHUB_WORKSPACE/.distignore" ]]; then
 fi
 
 # Copy dotorg assets to /assets
-rsync -rc "$GITHUB_WORKSPACE/$ASSETS_DIR/" assets/ --delete --delete-excluded
-
+# rsync -rc "$GITHUB_WORKSPACE/$ASSETS_DIR/" assets/ --delete --delete-excluded
+echo "TEST"
 echo "➤ Preparing files..."
 
 svn status
