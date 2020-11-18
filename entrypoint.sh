@@ -54,9 +54,7 @@ if [[ -e "$GITHUB_WORKSPACE/.distignore" ]]; then
 
  	# Copy from current branch to /trunk, excluding dotorg assets
  	# The --delete flag will delete anything in destination that no longer exists in source
- 	# rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "$GITHUB_WORKSPACE/" trunk/ --delete --delete-excluded
-	cp "$GITHUB_WORKSPACE/$README_NAME" trunk/$README_NAME
-	
+ 	# rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "$GITHUB_WORKSPACE/" trunk/ --delete --delete-excluded		
 # else
 # 	echo "ℹ︎ Using .gitattributes"
 
@@ -94,9 +92,11 @@ if [[ -e "$GITHUB_WORKSPACE/.distignore" ]]; then
 # 	rsync -rc "$TMP_DIR/" trunk/ --delete --delete-excluded
 fi
 
+# Copy readme to trunk
+rsync -c "$GITHUB_WORKSPACE/$README_NAME" "trunk/"
 # Copy dotorg assets to /assets
-# rsync -rc "$GITHUB_WORKSPACE/$ASSETS_DIR/" assets/ --delete --delete-excluded
-echo "TEST"
+rsync -rc "$GITHUB_WORKSPACE/$ASSETS_DIR/" assets/ --delete --delete-excluded
+
 echo "➤ Preparing files..."
 
 svn status
